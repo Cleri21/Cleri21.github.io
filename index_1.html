@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clerin Jacob Siby</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FAFAF8;
+    --panel: #F1F1EC;
+    --ink: #1B1F23;
+    --muted: #5C6570;
+    --line: #E1E3DE;
+    --accent: #0F6E63;
+    --accent-ink: #ffffff;
+    --accent-soft: #E3F0EC;
+    --font-display: "Sora", "Segoe UI", Arial, sans-serif;
+    --font-body: "Work Sans", "Segoe UI", Arial, sans-serif;
+    --font-mono: "JetBrains Mono", "SF Mono", Consolas, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #12161A;
+      --panel: #1A2024;
+      --ink: #EDEFEF;
+      --muted: #97A1A8;
+      --line: #2A3238;
+      --accent: #4FD1C0;
+      --accent-ink: #0A1614;
+      --accent-soft: #1B3733;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #12161A;
+    --panel: #1A2024;
+    --ink: #EDEFEF;
+    --muted: #97A1A8;
+    --line: #2A3238;
+    --accent: #4FD1C0;
+    --accent-ink: #0A1614;
+    --accent-soft: #1B3733;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---- Nav ---- */
+  .nav {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; padding-block: 16px; }
+  .logo { font-family: var(--font-mono); font-weight: 500; font-size: 1.05rem; letter-spacing: -0.01em; }
+  .logo .dot { color: var(--accent); }
+  .navlinks { display: flex; gap: 28px; font-size: 0.92rem; font-weight: 500; }
+  .navlinks a { color: var(--muted); transition: color .15s; }
+  .navlinks a:hover { color: var(--ink); }
+  .navlinks { display: none; }
+  @media (min-width: 640px) { .navlinks { display: flex; } }
+  .nav-cta {
+    font-family: var(--font-mono); font-size: 0.82rem;
+    border: 1px solid var(--line); padding: 7px 14px;
+    border-radius: 3px;
+  }
+  .nav-cta:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ---- Hero ---- */
+  .hero { padding: clamp(56px, 10vw, 96px) 0 clamp(40px, 8vw, 72px); }
+  .eyebrow {
+    font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.08em;
+    color: var(--accent); text-transform: uppercase; margin: 0 0 18px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .eyebrow::before { content: ""; width: 22px; height: 1px; background: var(--accent); }
+  .hero h1 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(2.2rem, 6vw, 3.4rem); line-height: 1.12;
+    margin: 0 0 20px; text-wrap: balance; letter-spacing: -0.01em;
+    max-width: 15ch;
+  }
+  .hero h1 .accent { color: var(--accent); }
+  .hero .lede {
+    font-size: 1.15rem; line-height: 1.65; color: var(--muted);
+    max-width: 46ch; margin: 0 0 32px;
+  }
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    font-family: var(--font-body); font-weight: 600; font-size: 0.95rem;
+    padding: 12px 22px; border-radius: 4px; display: inline-flex; align-items: center; gap: 8px;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary { background: var(--accent); color: var(--accent-ink); }
+  .btn-primary:hover { box-shadow: 0 6px 18px -6px color-mix(in srgb, var(--accent) 60%, transparent); }
+  .btn-ghost { border: 1px solid var(--line); color: var(--ink); }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ---- Section scaffolding ---- */
+  section { padding: clamp(48px, 8vw, 80px) 0; border-top: 1px solid var(--line); }
+  .section-head { margin-bottom: 36px; }
+  .section-head .eyebrow { margin-bottom: 10px; }
+  .section-head h2 {
+    font-family: var(--font-display); font-weight: 700; font-size: clamp(1.5rem, 3.5vw, 1.9rem);
+    margin: 0; letter-spacing: -0.01em;
+  }
+
+  /* ---- About ---- */
+  .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: start; }
+  @media (max-width: 720px) { .about-grid { grid-template-columns: 1fr; gap: 32px; } }
+  .about-grid .prose { font-size: 1.04rem; line-height: 1.7; color: var(--ink); max-width: 58ch; }
+  .about-grid .prose p { margin: 0 0 16px; }
+  .facts { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .fact {
+    display: flex; justify-content: space-between; gap: 16px;
+    padding: 14px 18px; border-bottom: 1px solid var(--line); font-size: 0.92rem;
+  }
+  .fact:last-child { border-bottom: none; }
+  .fact span:first-child { color: var(--muted); }
+  .fact span:last-child { font-weight: 500; text-align: right; }
+
+  /* ---- Skills ---- */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 28px; }
+  .skill-group h3 {
+    font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--muted); margin: 0 0 14px; font-weight: 500;
+  }
+  .skill-group ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-group li {
+    font-size: 0.88rem; padding: 6px 12px; border: 1px solid var(--line); border-radius: 4px;
+    background: var(--panel);
+  }
+  .skill-group.building li { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+
+  /* ---- Experience ---- */
+  .exp-entry { border: 1px solid var(--line); border-radius: 8px; padding: 26px; background: var(--panel); }
+  .exp-head { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; }
+  .exp-head h3 { font-family: var(--font-display); font-size: 1.15rem; margin: 0 0 4px; font-weight: 600; }
+  .exp-sub { color: var(--muted); font-size: 0.92rem; margin: 0; }
+  .exp-dates { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); white-space: nowrap; }
+  .exp-list { margin: 0 0 16px; padding-left: 20px; font-size: 0.94rem; line-height: 1.6; color: var(--ink); }
+  .exp-list li { margin-bottom: 8px; }
+  .exp-list li:last-child { margin-bottom: 0; }
+  .note-line { font-size: 0.88rem; color: var(--muted); margin-top: 18px; line-height: 1.6; }
+
+  /* ---- Projects ---- */
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+  .card {
+    border: 1px solid var(--line); border-radius: 8px; padding: 26px;
+    background: var(--panel); display: flex; flex-direction: column; height: 100%;
+    transition: border-color .15s, transform .15s;
+  }
+  .card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 10px; }
+  .card h3 { font-family: var(--font-display); font-size: 1.15rem; margin: 0; font-weight: 600; }
+  .card-link {
+    font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent);
+    border: 1px solid var(--accent); border-radius: 4px; padding: 5px 10px; white-space: nowrap;
+  }
+  .card-link:hover { background: var(--accent); color: var(--accent-ink); }
+  .card p.desc { font-size: 0.95rem; line-height: 1.6; color: var(--muted); margin: 0 0 16px; flex-grow: 1; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+  .tags span {
+    font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted);
+    padding: 3px 8px; border: 1px solid var(--line); border-radius: 3px;
+  }
+  .card .field-note { font-size: 0.82rem; color: var(--muted); font-style: italic; margin: 0; }
+
+  /* ---- Certifications ---- */
+  .cert-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+  .cert-list li {
+    display: flex; justify-content: space-between; gap: 16px;
+    padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 0.98rem;
+  }
+  .cert-list li:last-child { border-bottom: none; }
+  .cert-list .cert-year { font-family: var(--font-mono); color: var(--muted); font-size: 0.85rem; white-space: nowrap; }
+
+  /* ---- Contact ---- */
+  .contact-section { text-align: center; }
+  .contact-section h2 {
+    font-family: var(--font-display); font-weight: 700; font-size: clamp(1.7rem, 4vw, 2.3rem);
+    margin: 0 0 14px; text-wrap: balance;
+  }
+  .contact-section .lede { color: var(--muted); font-size: 1.05rem; max-width: 44ch; margin: 0 auto 28px; }
+  .contact-ctas { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+  footer {
+    border-top: 1px solid var(--line); padding: 28px 0;
+    font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted);
+  }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+
+  @media (max-width: 480px) {
+    .hero-ctas, .contact-ctas { flex-direction: column; align-items: stretch; }
+  }
+</style>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="logo" href="#top">CJS<span class="dot">.</span></a>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#certifications">Certs</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a class="nav-cta" href="mailto:clerinjacob15@gmail.com">Say hello</a>
+  </div>
+</nav>
+
+<div id="top" class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Portfolio &middot; 2026</p>
+    <h1>B.Tech CSE student building <span class="accent">software &amp; AI systems.</span></h1>
+    <p class="lede">I'm Clerin Jacob Siby &mdash; a CSE undergraduate building full-stack products, applied AI/GenAI tools, and deep learning systems, with an interest in solving real business problems with ML.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="#projects">View projects</a>
+      <a class="btn btn-ghost" href="mailto:clerinjacob15@gmail.com">Email me</a>
+    </div>
+  </div>
+</div>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">01 &middot; About</p>
+      <h2>Who I am</h2>
+    </div>
+    <div class="about-grid">
+      <div class="prose">
+        <p>B.Tech CSE undergraduate (9.08 CGPA) with hands-on experience in full-stack development, applied AI/GenAI, and deep learning.</p>
+        <p>Passionate about applying AI/ML and GenAI to solve real-world business problems, with strong programming and analytical fundamentals &mdash; building toward a career in digital platforms and technology consulting.</p>
+      </div>
+      <div class="facts">
+        <div class="fact"><span>Institution</span><span>SRM Institute of Science &amp; Technology</span></div>
+        <div class="fact"><span>Programme</span><span>B.Tech, CSE &middot; 2023&ndash;2027</span></div>
+        <div class="fact"><span>CGPA</span><span>9.08 / 10</span></div>
+        <div class="fact"><span>Focus</span><span>AI/ML, Full-Stack &amp; Data</span></div>
+        <div class="fact"><span>Location</span><span>Delhi, India</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">02 &middot; Skills</p>
+      <h2>What I work with</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h3>Languages</h3>
+        <ul><li>Python</li><li>C++</li><li>SQL</li><li>JavaScript</li><li>HTML/CSS</li></ul>
+      </div>
+      <div class="skill-group">
+        <h3>Machine Learning / AI</h3>
+        <ul><li>PyTorch</li><li>Pandas</li><li>NumPy</li><li>Matplotlib</li><li>Scikit-learn</li><li>NLP</li><li>LLM API integration</li><li>Agno (phidata)</li><li>Multi-agent orchestration</li></ul>
+      </div>
+      <div class="skill-group">
+        <h3>LLM &amp; AI Tools</h3>
+        <ul><li>Groq</li><li>Llama 3.3</li><li>Gemini API</li><li>Prompt Engineering</li></ul>
+      </div>
+      <div class="skill-group">
+        <h3>Frameworks</h3>
+        <ul><li>React.js</li><li>Node.js</li><li>Express.js</li><li>Flask</li><li>REST APIs</li></ul>
+      </div>
+      <div class="skill-group">
+        <h3>Databases</h3>
+        <ul><li>MySQL</li><li>MongoDB</li></ul>
+      </div>
+      <div class="skill-group">
+        <h3>Developer Tools</h3>
+        <ul><li>Git</li><li>Docker</li><li>OLLAMA</li><li>Cursor</li><li>Postman</li></ul>
+      </div>
+      <div class="skill-group">
+        <h3>Analytical Tools</h3>
+        <ul><li>Excel / data analysis</li><li>Statistical modeling</li><li>Market &amp; trend analysis</li><li>Data visualization</li></ul>
+      </div>
+      <div class="skill-group">
+        <h3>Core CS</h3>
+        <ul><li>Data Structures &amp; Algorithms</li><li>OOPS</li><li>DBMS</li><li>Computer Networks</li><li>Operating Systems</li><li>SDLC</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">03 &middot; Experience</p>
+      <h2>Where I've worked</h2>
+    </div>
+    <div class="exp-entry">
+      <div class="exp-head">
+        <div>
+          <h3>Gen AI &amp; Cloud Computing Intern</h3>
+          <p class="exp-sub">BharatCares (CSRBOX Group) &middot; IBM SkillsBuild Academic Internship, AICTE</p>
+        </div>
+        <span class="exp-dates">06/2026 &ndash; 07/2026 &middot; Remote</span>
+      </div>
+      <ul class="exp-list">
+        <li>Built a full-stack AI placement-preparation platform (<strong>PrepPilot</strong>) with a React/Vite frontend and Node.js/Express backend, integrating the Gemini API for LLM-based conversational interview guidance.</li>
+        <li>Applied prompt engineering and Gen AI application-development practices to design the platform's conversational and feedback logic.</li>
+        <li>Debugged and resolved integration issues between the React frontend and Node.js/Express backend during real-time AI response streaming, ensuring stable client&ndash;server communication.</li>
+        <li>Designed REST-based client&ndash;server architecture and containerized frontend and backend with Docker and Docker Compose for reproducible deployment.</li>
+      </ul>
+      <div class="tags">
+        <span>React</span><span>Vite</span><span>Node.js / Express</span><span>Gemini API</span><span>Docker</span>
+      </div>
+      <a class="card-link" style="margin-top:14px; display:inline-block;" href="https://github.com/Cleri21/Pre-pilot-AI-Coach1" target="_blank" rel="noopener">Repo &rarr;</a>
+    </div>
+    <p class="note-line">Also spent 06/2025&ndash;07/2025 as a Social Work Intern with Bharte Kadam Foundation, Delhi &mdash; supporting educational activities, outreach events, and volunteer coordination.</p>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">04 &middot; Projects</p>
+      <h2>Selected work</h2>
+    </div>
+    <div class="projects-grid">
+      <div class="card">
+        <div class="card-top">
+          <h3>Financial Advisor</h3>
+          <a class="card-link" href="https://github.com/Cleri21/financial-advisor" target="_blank" rel="noopener">Repo &rarr;</a>
+        </div>
+        <p class="desc">A multi-agent financial research system: a Financial Analyst agent pulls live stock metrics, a Web Researcher agent gathers recent news, and a Team Leader agent coordinates both to answer investing questions through a Streamlit interface.</p>
+        <div class="tags"><span>Python</span><span>Agno / phidata</span><span>Groq</span><span>Streamlit</span><span>yfinance</span></div>
+        <p class="field-note">Runs on Groq's free-tier open-weight models; logs per-session token usage to CSV.</p>
+      </div>
+      <div class="card">
+        <div class="card-top">
+          <h3>Book Recommendation System</h3>
+          <a class="card-link" href="https://github.com/Cleri21/litverse" target="_blank" rel="noopener">Repo &rarr;</a>
+        </div>
+        <p class="desc">A content-based recommender that scores book similarity with cosine similarity over a user&ndash;item matrix, surfaced through a Streamlit interface showing cover art, authors, and ratings.</p>
+        <div class="tags"><span>Python</span><span>pandas</span><span>NumPy</span><span>scikit-learn</span><span>Streamlit</span></div>
+      </div>
+      <div class="card">
+        <div class="card-top">
+          <h3>Stock Price Forecasting</h3>
+          <a class="card-link" href="https://github.com/Cleri21/stock-forecasting" target="_blank" rel="noopener">Repo &rarr;</a>
+        </div>
+        <p class="desc">Built and compared LSTM, GRU, and Transformer models using 14 years of data from 10 major U.S. stocks, evaluated across market conditions, volatility levels, and training-data sizes, then applied to a simple trading strategy documented in a research paper.</p>
+        <div class="tags"><span>Python</span><span>PyTorch</span><span>Pandas</span><span>NumPy</span><span>Matplotlib</span></div>
+      </div>
+      <div class="card">
+        <div class="card-top">
+          <h3>AI-Powered Resume Analyzer</h3>
+        </div>
+        <p class="desc">A Flask application that matches resumes to job descriptions using TF-IDF and semantic embeddings, with PDF/DOCX/TXT parsing and AI-generated strengths, gaps, and improvement suggestions via hybrid, context-aware matching.</p>
+        <div class="tags"><span>Flask</span><span>Hugging Face API</span><span>Groq / Llama 3.3</span></div>
+      </div>
+      <div class="card">
+        <div class="card-top">
+          <h3>Civic Issue Reporting &amp; Management System</h3>
+          <a class="card-link" href="https://github.com/Cleri21/sihcivic" target="_blank" rel="noopener">Repo &rarr;</a>
+        </div>
+        <p class="desc">A real-time platform for citizens to report and location-tag civic issues, with an admin dashboard for authorities to assign, track, and resolve them. Qualified in Round 1 of Smart India Hackathon (SIH) with this project.</p>
+        <div class="tags"><span>MongoDB</span><span>Express</span><span>React</span><span>Node.js</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certifications">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">05 &middot; Certifications</p>
+      <h2>Certifications &amp; achievements</h2>
+    </div>
+    <ul class="cert-list">
+      <li><span>NPTEL &mdash; Natural Language Processing</span><span class="cert-year">2026</span></li>
+      <li><span>Google AI-ML Virtual Internship, EdSkills</span><span class="cert-year">2026</span></li>
+      <li><span>HackVega 2.0 &mdash; Participant</span><span class="cert-year">2026</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="contact" class="contact-section">
+  <div class="wrap">
+    <p class="eyebrow" style="justify-content:center;">06 &middot; Contact</p>
+    <h2>Let's talk.</h2>
+    <p class="lede">Open to internships and analyst/engineering roles &mdash; reach out by email or check out the code on GitHub.</p>
+    <div class="contact-ctas">
+      <a class="btn btn-primary" href="mailto:clerinjacob15@gmail.com">clerinjacob15@gmail.com</a>
+      <a class="btn btn-ghost" href="https://github.com/Cleri21" target="_blank" rel="noopener">github.com/Cleri21</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Clerin Jacob Siby</span>
+    <span>Built Sept 2026</span>
+  </div>
+</footer>
+</head>
+<body>
+</body>
+</html>
