@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clerin Jacob Siby</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F1F4F8;
+    --panel: #E7ECF2;
+    --ink: #12202E;
+    --muted: #5B6B7A;
+    --line: #B9C6D3;
+    --line-strong: #8FA1B3;
+    --accent: #2657A6;
+    --accent-warm: #A85A22;
+    --font-display: "Spectral", Georgia, "Times New Roman", serif;
+    --font-body: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --font-mono: "IBM Plex Mono", "SF Mono", Consolas, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #0D1822;
+      --panel: #142433;
+      --ink: #E7EDF3;
+      --muted: #92A6B8;
+      --line: #2B3F52;
+      --line-strong: #3E5670;
+      --accent: #74ABDE;
+      --accent-warm: #D98A4B;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper: #0D1822;
+    --panel: #142433;
+    --ink: #E7EDF3;
+    --muted: #92A6B8;
+    --line: #2B3F52;
+    --line-strong: #3E5670;
+    --accent: #74ABDE;
+    --accent-warm: #D98A4B;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body { background-color: var(--paper); }
+
+  body {
+    margin: 0;
+    background-color: var(--paper);
+    background-image:
+      repeating-linear-gradient(0deg, color-mix(in srgb, var(--line) 45%, transparent) 0px, color-mix(in srgb, var(--line) 45%, transparent) 1px, transparent 1px, transparent 28px),
+      repeating-linear-gradient(90deg, color-mix(in srgb, var(--line) 45%, transparent) 0px, color-mix(in srgb, var(--line) 45%, transparent) 1px, transparent 1px, transparent 28px);
+    color: var(--ink);
+    font-family: var(--font-body);
+    padding: 32px 16px 80px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .sheet {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  /* ---- Title block ---- */
+  .titleblock {
+    border: 1px solid var(--line-strong);
+    background: color-mix(in srgb, var(--panel) 88%, transparent);
+    padding: 28px clamp(20px, 5vw, 40px);
+    position: relative;
+  }
+  .titleblock .corner-tl, .titleblock .corner-br {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border: 1.5px solid var(--accent);
+  }
+  .titleblock .corner-tl { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+  .titleblock .corner-br { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+  .titleblock h1 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2rem, 5.5vw, 2.85rem);
+    line-height: 1.08;
+    margin: 10px 0 6px;
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+  }
+
+  .titleblock .role {
+    font-family: var(--font-body);
+    font-style: italic;
+    color: var(--muted);
+    font-size: 1.05rem;
+    margin: 0 0 22px;
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px 28px;
+    border-top: 1px solid var(--line);
+    padding-top: 18px;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+  }
+  .meta-grid dt {
+    color: var(--muted);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+  .meta-grid dd { margin: 0; }
+  .meta-grid a { color: var(--ink); text-decoration-color: var(--line-strong); }
+  .meta-grid a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+
+  /* ---- Sheet sections ---- */
+  section.sheet-section {
+    margin-top: 48px;
+  }
+  .sheet-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 8px;
+    margin-bottom: 22px;
+  }
+  .sheet-head .num {
+    font-family: var(--font-mono);
+    color: var(--accent);
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+  }
+  .sheet-head h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.4rem;
+    margin: 0;
+    letter-spacing: -0.005em;
+  }
+
+  .prose { max-width: 62ch; line-height: 1.65; font-size: 1.04rem; }
+  .prose p { margin: 0 0 14px; }
+  .prose p:last-child { margin-bottom: 0; }
+
+  /* ---- Bill of materials table ---- */
+  table.bom {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+  }
+  table.bom caption {
+    text-align: left;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  table.bom th {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+    border-bottom: 1px solid var(--line-strong);
+    padding: 0 12px 8px 0;
+  }
+  table.bom td {
+    border-bottom: 1px solid var(--line);
+    padding: 12px 12px 12px 0;
+    vertical-align: top;
+  }
+  table.bom tr:last-child td { border-bottom: 1px solid var(--line-strong); }
+  table.bom td.no {
+    font-family: var(--font-mono);
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+    width: 2.4em;
+  }
+  table.bom td.cat {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    white-space: nowrap;
+    width: 9em;
+  }
+  table.bom td.items { font-family: var(--font-body); }
+
+  /* ---- Education ---- */
+  .edu-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 18px;
+    margin-bottom: 18px;
+  }
+  .edu-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .edu-main h3 {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    margin: 0 0 3px;
+    font-weight: 600;
+  }
+  .edu-main .sub { color: var(--muted); font-size: 0.95rem; }
+  .edu-stat {
+    font-family: var(--font-mono);
+    text-align: right;
+    font-size: 0.85rem;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .edu-stat strong {
+    display: block;
+    font-size: 1.5rem;
+    color: var(--ink);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+  .note {
+    font-size: 0.88rem;
+    color: var(--muted);
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--line);
+  }
+
+  /* ---- Projects ---- */
+  .project {
+    border-top: 1px solid var(--line-strong);
+    border-left: 3px solid var(--accent);
+    padding: 20px 0 20px 22px;
+    margin-bottom: 4px;
+  }
+  .project + .project { margin-top: 26px; }
+  .project-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+  .project-head h3 {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    margin: 0;
+    font-weight: 600;
+  }
+  .project-repo {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    white-space: nowrap;
+  }
+  .project-repo::after { content: " \2192"; }
+  .project p.desc {
+    font-size: 1.01rem;
+    line-height: 1.6;
+    margin: 0 0 12px;
+    max-width: 58ch;
+  }
+  .stack {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+  }
+  .field-note {
+    font-size: 0.86rem;
+    color: var(--muted);
+    margin-top: 10px;
+    font-style: italic;
+  }
+
+  /* ---- Contact ---- */
+  .contact-block {
+    border: 1px solid var(--line-strong);
+    padding: 24px clamp(20px, 5vw, 36px);
+    background: color-mix(in srgb, var(--panel) 88%, transparent);
+  }
+  .contact-rows { display: flex; flex-direction: column; gap: 14px; }
+  .contact-row {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .contact-row .label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    width: 6.5em;
+    flex-shrink: 0;
+  }
+  .contact-row a {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+  }
+
+  footer {
+    max-width: 760px;
+    margin: 56px auto 0;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  @media (max-width: 480px) {
+    .titleblock, .contact-block { padding: 22px 18px; }
+    .edu-row { flex-direction: column; }
+    .edu-stat { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <div class="titleblock">
+    <span class="corner-tl"></span><span class="corner-br"></span>
+    <p class="eyebrow">Personal portfolio &mdash; Rev. 2026.09</p>
+    <h1>Clerin Jacob Siby</h1>
+    <p class="role">B.Tech CSE student &middot; aspiring software &amp; AI engineer</p>
+    <dl class="meta-grid">
+      <div>
+        <dt>Institution</dt>
+        <dd>SRM Institute of Science &amp; Technology</dd>
+      </div>
+      <div>
+        <dt>Programme</dt>
+        <dd>B.Tech, Computer Science &amp; Engineering &middot; 2023&ndash;2027</dd>
+      </div>
+      <div>
+        <dt>GitHub</dt>
+        <dd><a href="https://github.com/Cleri21" target="_blank" rel="noopener">github.com/Cleri21</a></dd>
+      </div>
+      <div>
+        <dt>Email</dt>
+        <dd><a href="mailto:clerinjacob15@gmail.com">clerinjacob15@gmail.com</a></dd>
+      </div>
+    </dl>
+  </div>
+
+  <section class="sheet-section" aria-labelledby="about-h">
+    <div class="sheet-head">
+      <span class="num">SHEET 01</span>
+      <h2 id="about-h">About</h2>
+    </div>
+    <div class="prose">
+      <p>I'm a Computer Science and Engineering undergraduate at SRM Institute of Science and Technology, currently holding a 9.08/10 CGPA. Before starting the programme in 2023, I took a one-year gap after school to prepare for JEE Mains.</p>
+      <p>I'm working through a self-directed 26-week AI Engineering curriculum &mdash; building from Python fundamentals up to applied machine learning and LLM-based systems &mdash; while also exploring full-stack development and data engineering through coursework, side projects, and campus placement preparation.</p>
+    </div>
+  </section>
+
+  <section class="sheet-section" aria-labelledby="skills-h">
+    <div class="sheet-head">
+      <span class="num">SHEET 02</span>
+      <h2 id="skills-h">Skills</h2>
+    </div>
+    <table class="bom">
+      <caption>Bill of materials &mdash; languages, frameworks &amp; tools in active use</caption>
+      <thead>
+        <tr><th class="no">No.</th><th>Category</th><th>Items</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="no">01</td>
+          <td class="cat">Languages</td>
+          <td class="items">Python, TypeScript / JavaScript, SQL</td>
+        </tr>
+        <tr>
+          <td class="no">02</td>
+          <td class="cat">AI &amp; ML</td>
+          <td class="items">pandas, NumPy, scikit-learn, LLM agent orchestration (Agno / phidata, Groq)</td>
+        </tr>
+        <tr>
+          <td class="no">03</td>
+          <td class="cat">Web</td>
+          <td class="items">React, Node.js, Tailwind CSS, Vite</td>
+        </tr>
+        <tr>
+          <td class="no">04</td>
+          <td class="cat">Tooling</td>
+          <td class="items">Git &amp; GitHub, Streamlit, VS Code</td>
+        </tr>
+        <tr>
+          <td class="no">05</td>
+          <td class="cat">Currently building</td>
+          <td class="items">Applied ML and agentic LLM systems, via a 26-week AI engineering curriculum</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="sheet-section" aria-labelledby="edu-h">
+    <div class="sheet-head">
+      <span class="num">SHEET 03</span>
+      <h2 id="edu-h">Education</h2>
+    </div>
+    <div class="edu-row">
+      <div class="edu-main">
+        <h3>SRM Institute of Science &amp; Technology</h3>
+        <p class="sub">B.Tech, Computer Science &amp; Engineering &middot; 2023&ndash;2027</p>
+      </div>
+      <div class="edu-stat">
+        <strong>9.08<span style="font-size:0.9rem; color:var(--muted);">/10</span></strong>
+        CGPA
+      </div>
+    </div>
+    <p class="note">Took a one-year gap after completing school (CBSE) to prepare for JEE Mains before joining the B.Tech programme.</p>
+  </section>
+
+  <section class="sheet-section" aria-labelledby="projects-h">
+    <div class="sheet-head">
+      <span class="num">SHEET 04</span>
+      <h2 id="projects-h">Projects</h2>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <h3>Financial Advisor</h3>
+        <a class="project-repo" href="https://github.com/Cleri21/financial-advisor" target="_blank" rel="noopener">view repository</a>
+      </div>
+      <p class="desc">A multi-agent financial research system: a Financial Analyst agent pulls live stock metrics, a Web Researcher agent gathers recent news, and a Team Leader agent coordinates both to answer investing questions through a Streamlit interface.</p>
+      <p class="stack">PYTHON &middot; AGNO (PHIDATA) &middot; GROQ &middot; STREAMLIT &middot; YFINANCE &middot; DUCKDUCKGO SEARCH</p>
+      <p class="field-note">Runs on Groq's free-tier open-weight models; logs per-session token usage to CSV.</p>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <h3>Book Recommendation System</h3>
+        <a class="project-repo" href="https://github.com/Cleri21/book-recommendation-system-" target="_blank" rel="noopener">view repository</a>
+      </div>
+      <p class="desc">A content-based recommender that scores book similarity with cosine similarity over a user&ndash;item matrix, surfaced through a Streamlit interface showing cover art, authors, and ratings.</p>
+      <p class="stack">PYTHON &middot; PANDAS &middot; NUMPY &middot; SCIKIT-LEARN &middot; STREAMLIT</p>
+    </div>
+  </section>
+
+  <section class="sheet-section" aria-labelledby="contact-h">
+    <div class="sheet-head">
+      <span class="num">SHEET 05</span>
+      <h2 id="contact-h">Contact</h2>
+    </div>
+    <div class="contact-block">
+      <div class="contact-rows">
+        <div class="contact-row">
+          <span class="label">Email</span>
+          <a href="mailto:clerinjacob15@gmail.com">clerinjacob15@gmail.com</a>
+        </div>
+        <div class="contact-row">
+          <span class="label">GitHub</span>
+          <a href="https://github.com/Cleri21" target="_blank" rel="noopener">github.com/Cleri21</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>SHEET 05 OF 05</span>
+    <span>LAST REVISED SEPTEMBER 2026</span>
+  </footer>
+
+</div>
+</body>
+</html>
